@@ -37,7 +37,8 @@ If you are planning to edit then re-upload this script you can. You **can not** 
 --------
 
 ## License
-**For an updated license, check the license.md file. That file will always overrule anything mentioned in the readme.md**
+**The up to date license is located in the [license.md](LICENSE.md) file.**
+That file will always overrule anything mentioned in the [readme.md](README.md).
 
 
 ASP Website - https://www.agentsquad.org/
