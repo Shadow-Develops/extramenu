@@ -37,7 +37,7 @@ If you are planning to edit then re-upload this script you can. You **can not** 
 --------
 
 ## License
-**The up to date license is located in the [license.md](LICENSE.md) file.**
+**The up to date license is located in the [license.md](LICENSE.md) file.**<br>
 That file will always overrule anything mentioned in the [readme.md](README.md).
 
 
