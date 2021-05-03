@@ -1,3 +1,5 @@
+![alt text](https://agentsquad.org/img/ToULogo.png "ASP ToU Icon")
+
 # Terms of Use
 
 Copyright © 2020-2021 Agent Squad Productions
@@ -56,5 +58,3 @@ If you want a site to get approved [contact us](README.md#Support).
 - http://agentsquad.org
 - http://discord.agentsquad.org
 - http://docs.agentsquad.org
-
-![alt text](https://agentsquad.org/img/ToULogo.png "ASP ToU Icon")
