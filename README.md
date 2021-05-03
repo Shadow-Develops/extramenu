@@ -1,4 +1,4 @@
-# FiveM Extra Menu
+## [FiveM Extra Menu][5mLink] #
 A simple menu to make changing vehicle extras easy with the ability to customize the names extras have within the menu for certain vehicles.
 
 ### Demo Screenshots
@@ -31,8 +31,8 @@ If you need support, well first check out [documentation][docsLink], and if that
 
 # Editing / Re-Uploading
 
-If you are planning to edit then re-upload this script you can. You **_can not_** claim it as your own script though, cedit us.<br>
-    > Please read over the license for more information.
+If you are planning to edit then re-upload this script you can. You **can not** claim it as your own script though, cedit us.
+> Please read over the license for more information.
 
 --------
 
@@ -47,5 +47,5 @@ Copyright © 2020-2021 Agent Squad Productions
 
 ----
 
-
+[5mLink]: https://agentsquad.org
 [docsLink]: https://docs.agentsquad.org/
