@@ -5,7 +5,7 @@ A simple menu to make changing vehicle extras easy with the ability to customize
 
 |Normal Names|Custom Names|
 |:-:|:-:|
-|![Normal Names](https://www.vespura.com/hi/i/fef17e5.png)|![Custom Names](https://www.vespura.com/hi/i/458b6e4.png)|
+|![Normal Names](https://agentsquad.org/img/showcase/extramenu/NormalExtras.png)|![Custom Names](https://agentsquad.org/img/showcase/extramenu/CustomNames.png)|
 
 --------
 
