@@ -48,4 +48,4 @@ Copyright © 2020-2021 Agent Squad Productions
 ----
 
 [5mLink]: https://agentsquad.org
-[docsLink]: https://docs.agentsquad.org/
+[docsLink]: https://docs.agentsquad.org/extramen
