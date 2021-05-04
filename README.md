@@ -15,8 +15,19 @@ Click [here](https://github.com/Agent-Squad-Productions/extramenu/releases) to g
 
 --------
 
+## Updates
+
+There is plans to update this menu if issues are found, suggestions for addons are made, and/or we feel something needs to be added/changed.
+
+--------
+
 ## Installation
+
 Please follow the instructions our [documentation][docsLink] page.
+
+#### Dependencies
+
+You are required to have [NativeUI](https://forum.cfx.re/t/release-dev-nativeuilua/98318) installed.
 
 --------
 
@@ -48,4 +59,4 @@ Copyright © 2020-2021 Agent Squad Productions
 ----
 
 [5mLink]: https://agentsquad.org
-[docsLink]: https://docs.agentsquad.org/extramen
+[docsLink]: https://docs.agentsquad.org/extramenu
