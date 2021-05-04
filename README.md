@@ -32,7 +32,7 @@ If you need support, well first check out [documentation][docsLink], and if that
 # Editing / Re-Uploading
 
 If you are planning to edit then re-upload this script you can. You **can not** claim it as your own script though, cedit us.
-> Please read over the license for more information.
+> Please read over the [license](LICENSE.md) for more information.
 
 --------
 
