@@ -9,11 +9,13 @@ url 'https://github.com/Agent-Squad-Productions/extramenu'
 client_scripts {
     "@NativeUI/NativeUI.lua",
     "config.lua",
+    "keys.lua",
     "client/menu.lua"
 }
 
 server_scripts {
     "config.lua",
+    "keys.lua",
 }
 
 dependency "NativeUI"
