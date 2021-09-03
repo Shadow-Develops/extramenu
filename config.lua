@@ -14,7 +14,7 @@ Config = {}
 Config.MenuKey = 244
 --Default = 244 [M]  |  To change the button check out https://docs.fivem.net/game-references/controls/
 
-Config.locationOpen = true
+Config.locationOpen = false
 --Default = false | When this is true you will need to input information in Config.locationMarker, as the menu will only work when a player walks over a marker on the map.
 
 Config.MenuOrientation = 1
