@@ -14,6 +14,9 @@ Config = {}
 Config.MenuKey = 244
 --Default = 244 [M]  |  To change the button check out https://docs.fivem.net/game-references/controls/
 
+Config.locationOpen = true
+--Default = false | When this is true you will need to input information in Config.locationMarker, as the menu will only work when a player walks over a marker on the map.
+
 Config.MenuOrientation = 1
 --Left = 0  |  Right = 1 [Default]
 
@@ -50,3 +53,8 @@ EX:
     }},
 ]] 
 -- You can add more into the extra section
+
+Config.positions = {
+    -- {{Marker X, Marker Y, Marker Z, Marker Heading}, {Red, Green, Blue}, "Text for Marker"} (Do not put the key to press in the text, it auto is added.)
+    {{1867.42, 3666.11, 32.80, 0},{36,237,157}, "Test"} -- Outside the Sheriff's Station
+}
