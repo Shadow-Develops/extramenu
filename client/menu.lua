@@ -42,41 +42,46 @@ function ShowNotification(text)
 end
 
 function ExtraChanger(ped, vehicle, menu)
-    local veh_extras = {
-        ['vehicleExtras'] = {}
-    }
-    local items = {
-        ['vehicle'] = {}
-    }
+    local veh_extras = {}
+    local items = {}
 
     for extraID = 0, 20 do
         if DoesExtraExist(vehicle, extraID) then
-            veh_extras.vehicleExtras[extraID] = (IsVehicleExtraTurnedOn(vehicle, extraID) == 1)
+            veh_extras[extraID] = (IsVehicleExtraTurnedOn(vehicle, extraID) == 1)
         end
     end
 
-    for _, CustomExtra in pairs(Config.CustomNames) do
-        for k, v in pairs(veh_extras.vehicleExtras) do
+    local customCar = false
+
+    for _,CustomExtra in pairs(Config.CustomNames) do
+        for k,_ in pairs(veh_extras) do
             if GetEntityModel(vehicle) == GetHashKey(CustomExtra.vehicle) then
                 x = "" .. k .. ""
-                local extraItem = NativeUI.CreateCheckboxItem(CustomExtra.extra[x], veh_extras.vehicleExtras[k],
+                local extraItem = NativeUI.CreateCheckboxItem(CustomExtra.extra[x], veh_extras[k],
                     "Toggle for " .. CustomExtra.extra[x] .. " | Extra #" .. k)
                 mainMenu:AddItem(extraItem)
-                items.vehicle[k] = extraItem
-            else
-                local extraItem = NativeUI.CreateCheckboxItem('Extra ' .. k, veh_extras.vehicleExtras[k],
-                    "Toggle for Extra " .. k)
+                items[k] = extraItem
+                customCar = true
+            end
+        end
+    end
+
+    if customCar == false then
+        for _,CustomExtra in pairs(Config.CustomNames) do
+            for k,_ in pairs(veh_extras) do
+                local extraItem = NativeUI.CreateCheckboxItem('Extra ' .. k, veh_extras[k],
+                        "Toggle for Extra " .. k)
                 mainMenu:AddItem(extraItem)
-                items.vehicle[k] = extraItem
+                items[k] = extraItem
             end
         end
     end
 
     mainMenu.OnCheckboxChange = function(sender, item, checked)
-        for k, v in pairs(items.vehicle) do
+        for k, v in pairs(items) do
             if item == v then
-                veh_extras.vehicleExtras[k] = checked
-                if veh_extras.vehicleExtras[k] then
+                veh_extras[k] = checked
+                if veh_extras[k] then
                     SetVehicleExtra(vehicle, k, 0)
                 else
                     SetVehicleExtra(vehicle, k, 1)
@@ -96,6 +101,7 @@ function CreditsSection(ped, vehicle, menu)
     submenu:AddItem(NativeUI.CreateItem("Links", "~o~agentsquad.org ~w~| ~b~discord.agentsquad.org"))
     submenu:SetMenuWidthOffset(Config.MenuWidth)
 end
+
 
 function openMenu(ped, vehicle)
     if mainMenu ~= nil and mainMenu:Visible() then
