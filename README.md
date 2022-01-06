@@ -58,4 +58,4 @@ Copyright © 2020-2021 Agent Squad Productions
 
 ----
 
-[docsLink]: https://docs.agentsquad.org/extramenu
+[docsLink]: https://docs.agentsquad.org/en/opensource/extramenu
