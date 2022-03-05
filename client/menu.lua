@@ -1,14 +1,14 @@
 --[[
 ───────────────────────────────────────────────────────────────
 
-	Extra Changer Menu (menu.lua) - Created by Agent Squad Prodcutions
+	Extra Changer Menu (menu.lua) - Created by Shadow Development
 	
-	Website: https://agentsquad.org
-    Discord: https://discord.agentsquad.org
+	Website: https://shadowdevs.com
+    Discord: https://discord.shadowdevs.com
 
     DO NOT TOUCH THE CODE IF YOU DO NOT KNOW WHAT YOU ARE DOING!!
     If you do modify the code, and you want to reupload your version 
-        contact ASP first via Discord or our contact form on the website.
+        contact Shadow Development first via Discord or our contact form on the website.
 
 ───────────────────────────────────────────────────────────────
 ]] 
