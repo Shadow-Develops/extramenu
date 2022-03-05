@@ -1,4 +1,4 @@
-![alt text](https://agentsquad.org/img/ToULogo.png "ASP ToU Icon")
+![alt text](https://shadowdevs.com/img/ToULogo.png "Shadow Development ToU Icon")
 
 # Terms of Use
 
@@ -43,7 +43,7 @@ When crediting us, you must have the credit easily visable. The following requir
     - State that it is the original product.
 - [x] Our website must be preset.
     - Can be linked behide our name.
-        - EX: [Agent Squad Productions](https://agentsquad.org) = `[Agent Squad Productions](https://agentsquad.org)`
+        - EX: [Shadow Development](https://shadowdevs.com) = `[Shadow Development](https://shadowdevs.com)`
 
 ### Verified Sites
 The follow websites are verified for redistribution:
@@ -55,6 +55,6 @@ If you want a site to get approved [contact us](README.md#Support).
 ------
 
 ## Our Links
-- http://agentsquad.org
-- http://discord.agentsquad.org
-- http://docs.agentsquad.org
+- http://shadowdevs.com
+- http://discord.shadowdevs.com
+- http://docs.shadowdevs.com
