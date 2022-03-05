@@ -1,11 +1,11 @@
 --[[
 ───────────────────────────────────────────────────────────────
 
-	Extra Changer Menu (config.lua) - Created by Agent Squad Prodcutions
+	Extra Changer Menu (config.lua) - Created by Shadow Development
 	
-	Website: https://agentsquad.org
-    Documentation: https://docs.agentsquad.org/extramenu
-    Discord: https://discord.agentsquad.org
+	Website: https://shadowdevs.com
+    Documentation: https://docs.shadowdevs.com/extramenu
+    Discord: https://discord.shadowdevs.com
 
 ───────────────────────────────────────────────────────────────
 ]]
