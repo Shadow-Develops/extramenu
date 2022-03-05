@@ -1,7 +1,7 @@
 --[[
 ───────────────────────────────────────────────────────────────
 
-	Extra Changer Menu (keys.lua) - Created by Agent Squad Prodcutions
+	Extra Changer Menu (keys.lua) - Created by Shadow Development
 	
 	This file is so that keys appear properly when useing Config.locationOpen.
     Do not change this file unless you are adding in a new key that isn't defined.
