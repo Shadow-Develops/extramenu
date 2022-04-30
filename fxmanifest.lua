@@ -1,5 +1,5 @@
-fx_version ‘cerulean’
-game ‘gta5’
+fx_version 'cerulean'
+game 'gta5'
 
 name 'Extra Menu'
 description 'A simple menu to make changing vehicle extras easy with the ability to customize the names extras have within the menu for certain vehicles.'
