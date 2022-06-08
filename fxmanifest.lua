@@ -8,7 +8,7 @@ version 'v2.0.0'
 url 'https://github.com/Shadow-Develops/extramenu'
 
 client_scripts {
-    'NativeUI.lua',
+    '@NativeUI/NativeUI.lua',
     'keys.lua',
     'client/menu.lua'
 }
@@ -20,3 +20,5 @@ server_scripts {
 shared_scripts {
     'config.lua',
 }
+
+dependency "NativeUI"
