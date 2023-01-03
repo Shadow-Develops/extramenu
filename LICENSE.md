@@ -2,7 +2,7 @@
 
 # Terms of Use
 
-Copyright © 2020-2021 Agent Squad Productions
+Copyright © 2020-2023 Shadow Development
 
 ## License Information
 ---
