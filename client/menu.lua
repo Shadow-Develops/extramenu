@@ -4,7 +4,7 @@
 	Extra Changer Menu (menu.lua) - Created by Shadow Development
 	
 	Website: https://shadowdevs.com
-    Discord: https://discord.shadowdevs.com
+    Discord: https://shadowdevs.com/discord
 
     DO NOT TOUCH THE CODE IF YOU DO NOT KNOW WHAT YOU ARE DOING!!
     If you do modify the code, and you want to reupload your version 
@@ -13,6 +13,8 @@
 ───────────────────────────────────────────────────────────────
 ]] 
 _menuPool = NativeUI.CreatePool()
+local menuOpen = false
+local allowedToUse = false
 
 local MenuOri = 0
 if Config.MenuOrientation == 0 then
@@ -34,6 +36,38 @@ elseif Config.MenuTitle == 2 then
 else
     MenuTitle = 'Extras Menu'
 end
+
+local function has_value (tab, val)
+    for index, value in ipairs(tab) do
+        if value == val then
+            return true
+        end
+    end
+
+    return false
+end
+
+function AreVehicleDoorsClosed(vehicle)
+    local result = true
+    local numberOfDoors = GetNumberOfVehicleDoors(vehicle)
+    for i = 0, numberOfDoors, 1 do
+        if GetVehicleDoorAngleRatio(vehicle, i) > 0.0 then
+            result = false
+        end
+    end
+    return result
+end
+
+function IsVehicleHealthy(vehicle)
+    local vehHealth = GetVehicleBodyHealth(vehicle)
+
+    if vehHealth > Config.DamageLimit then
+        return true
+    else
+        return false
+    end
+end
+
 
 function ShowNotification(text)
     SetNotificationTextEntry("STRING")
@@ -67,24 +101,47 @@ function ExtraChanger(ped, vehicle, menu)
     end
 
     if customCar == false then
-        for _,CustomExtra in pairs(Config.CustomNames) do
-            for k,_ in pairs(veh_extras) do
-                local extraItem = NativeUI.CreateCheckboxItem('Extra ' .. k, veh_extras[k],
-                        "Toggle for Extra " .. k)
-                mainMenu:AddItem(extraItem)
-                items[k] = extraItem
-            end
+        for k,_ in pairs(veh_extras) do
+            local extraItem = NativeUI.CreateCheckboxItem('Extra ' .. k, veh_extras[k],
+                    "Toggle for Extra " .. k)
+            mainMenu:AddItem(extraItem)
+            items[k] = extraItem
         end
     end
 
     mainMenu.OnCheckboxChange = function(sender, item, checked)
-        for k, v in pairs(items) do
-            if item == v then
-                veh_extras[k] = checked
-                if veh_extras[k] then
-                    SetVehicleExtra(vehicle, k, 0)
-                else
-                    SetVehicleExtra(vehicle, k, 1)
+        if not AreVehicleDoorsClosed(vehicle) then 
+            return ShowNotification("Vehicle extras can not be changed while doors are open. (It would force close doors.)") 
+        end
+        
+        if Config.DamageStopper then
+            if not IsVehicleHealthy(vehicle) then 
+                return ShowNotification("Vehicle extras can not be changed while vehicle is damaged. See a mechanic before changing extras.") 
+            end
+
+            for k, v in pairs(items) do
+                if item == v then
+                    veh_extras[k] = checked
+                    if veh_extras[k] then
+                        SetVehicleExtra(vehicle, k, 0)
+                    else
+                        SetVehicleExtra(vehicle, k, 1)
+                    end
+                end
+            end
+
+            SetVehicleDeformationFixed(vehicle)
+            SetVehicleAutoRepairDisabled(vehicle, false)
+        else
+            SetVehicleAutoRepairDisabled(vehicle, false)
+            for k, v in pairs(items) do
+                if item == v then
+                    veh_extras[k] = checked
+                    if veh_extras[k] then
+                        SetVehicleExtra(vehicle, k, 0)
+                    else
+                        SetVehicleExtra(vehicle, k, 1)
+                    end
                 end
             end
         end
@@ -101,7 +158,6 @@ function CreditsSection(ped, vehicle, menu)
     submenu:AddItem(NativeUI.CreateItem("Links", "~o~agentsquad.org ~w~| ~b~discord.agentsquad.org"))
     submenu:SetMenuWidthOffset(Config.MenuWidth)
 end
-
 
 function openMenu(ped, vehicle)
     if mainMenu ~= nil and mainMenu:Visible() then
@@ -125,15 +181,27 @@ end
 
 Citizen.CreateThread(function()
     while true do
+        TriggerServerEvent("extramenu.getIsAllowed")
         if Config.locationOpen == false then
             Citizen.Wait(0)
             _menuPool:ProcessMenus()
             local ped = GetPlayerPed(-1)
             local vehicle = GetVehiclePedIsIn(ped, false)
-            if IsControlJustReleased(1, Config.MenuKey) then
+            
+            if IsControlJustPressed(1, Config.MenuKey) and not menuOpen then
+                if not allowedToUse and Config.requirePerms then
+                    return ShowNotification('~r~You do not have the correct permissions to open this menu.')
+                end
+
+                menuOpen = true
                 if IsPedInAnyVehicle(ped, false) and GetPedInVehicleSeat(vehicle, -1) == ped then
                     openMenu(ped, vehicle)
                     mainMenu:Visible(not mainMenu:Visible())
+                end
+            elseif IsControlJustPressed(1, Config.MenuKey) and menuOpen then
+                menuOpen = false
+                if mainMenu ~= nil and mainMenu:Visible() then
+                    mainMenu:Visible(false)
                 end
             end
 
@@ -143,6 +211,7 @@ Citizen.CreateThread(function()
                 end
             end
         end
+
         if Config.locationOpen == true then
             Citizen.Wait(5)
             local player = GetPlayerPed(-1)
@@ -168,7 +237,11 @@ Citizen.CreateThread(function()
                     _menuPool:ProcessMenus()
                     local ped = GetPlayerPed(-1)
                     local vehicle = GetVehiclePedIsIn(ped, false)
-                    if IsControlJustReleased(1, Config.MenuKey) then
+                    if IsControlJustPressed(1, Config.MenuKey) then
+                        if not allowedToUse and Config.requirePerms then
+                            return ShowNotification('~r~You do not have the correct permissions to open this menu.')
+                        end
+
                         if IsPedInAnyVehicle(ped, false) and GetPedInVehicleSeat(vehicle, -1) == ped then
                             openMenu(ped, vehicle)
                             mainMenu:Visible(not mainMenu:Visible())
@@ -184,6 +257,11 @@ Citizen.CreateThread(function()
             end
         end
     end
+end)
+
+RegisterNetEvent("extramenu.returnIsAllowed")
+AddEventHandler("extramenu.returnIsAllowed", function(isAllowed)
+    allowedToUse = isAllowed
 end)
 
 if Config.locationOpen == true then
@@ -206,3 +284,16 @@ if Config.locationOpen == true then
         DisplayHelpTextFromStringLabel(0, 0, 1, -1)
     end
 end
+
+CreateThread(function()
+    while true do Wait(1000)
+        local vehicles = GetGamePool("CVehicle")
+        for _, v in pairs(vehicles) do
+            if v ~= GetVehiclePedIsIn(PlayerPedId(), false) then
+                SetVehicleAutoRepairDisabled(v, true)
+            else
+                SetVehicleAutoRepairDisabled(v, false)
+            end
+        end
+    end
+end)

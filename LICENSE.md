@@ -1,19 +1,21 @@
-![alt text](https://shadowdevs.com/img/ToULogo.png "Shadow Development ToU Icon")
+![alt text](https://shadowdevs.com/img/ToULogo.png 'Shadow Development ToU Icon')
 
 # Terms of Use
 
 Copyright © 2020-2023 Shadow Development
 
 ## License Information
+
 ---
+
 ### Definitions
 
 > Below the term "product" is used to describe the script, modification, item, or any other relitive term describing this content.
 > Below the term "redistribute" is describing any time of re-upload, re-release, or any simular terms.
 
-------
+---
 
-This product is freeware and is not to be exploited for personal, financial or commercial gain. 
+This product is freeware and is not to be exploited for personal, financial or commercial gain.
 This product is provided without any form of warranty.
 Therefore, responsibility for any damages caused by this product or its misuse rest solely with the user, as the author(s) will accept no liability.
 
@@ -30,31 +32,37 @@ Therefore, responsibility for any damages caused by this product or its misuse r
 - Use common sense when it comes to redistributing this product.
 
 ### Summary
+
 Basically you can edit anything with the product (except the terms / credits), and redistribute the product with proper credit.
 
-------
+---
 
 ## Additional Information
 
 ### Crediting
+
 When crediting us, you must have the credit easily visable. The following requirements must also be met:
-- [x] Our name (Agent Squad Productions) must be present.
+
+- [x] Our name (Shadow Development) must be present.
 - [x] This github link must be provided.
-    - State that it is the original product.
+  - State that it is the original product.
 - [x] Our website must be preset.
-    - Can be linked behide our name.
-        - EX: [Shadow Development](https://shadowdevs.com) = `[Shadow Development](https://shadowdevs.com)`
+  - Can be linked behide our name.
+    - EX: [Shadow Development](https://shadowdevs.com) = `[Shadow Development](https://shadowdevs.com)`
 
 ### Verified Sites
+
 The follow websites are verified for redistribution:
+
 - https://forum.cfx.re/
 - https://github.com/
 - https://www.gta5-mods.com/
-If you want a site to get approved [contact us](README.md#Support).
+  If you want a site to get approved [contact us](README.md#Support).
 
-------
+---
 
 ## Our Links
+
 - http://shadowdevs.com
-- http://discord.shadowdevs.com
+- http://shadowdevs.com/discord
 - http://docs.shadowdevs.com

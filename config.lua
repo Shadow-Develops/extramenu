@@ -4,37 +4,48 @@
 	Extra Changer Menu (config.lua) - Created by Shadow Development
 	
 	Website: https://shadowdevs.com
-    Documentation: https://docs.shadowdevs.com/extramenu
-    Discord: https://discord.shadowdevs.com
+    Documentation: https://docs.shadowdevs.com/opensource/extramenu
+    Discord: https://shadowdevs.com/discord
 
 ───────────────────────────────────────────────────────────────
 ]]
 Config = {}
 
 Config.MenuKey = 244
---Default = 244 [M]  |  To change the button check out https://docs.fivem.net/game-references/controls/
+-- Default = 244 [M]  |  To change the button check out https://docs.fivem.net/game-references/controls/
+
+Config.requirePerms = true
+-- When enabled (true), a user must have the ace permissions to open the menu.
+-- If using, add this to server.cfg: "add_ace identifier.steam:steamidhere use.ExtraMenu" allow or "add_ace group.groupName use.ExtraMenu allow"
 
 Config.locationOpen = false
---Default = false | When this is true you will need to input information in Config.locationMarker, as the menu will only work when a player walks over a marker on the map.
+-- Default = false | When this is true you will need to input information in Config.locationMarker, as the menu will only work when a player walks over a marker on the map.
 
 Config.MenuOrientation = 1
---Left = 0  |  Right = 1 [Default]
+-- Left = 0  |  Right = 1 [Default]
 
 Config.MenuWidth = 80
---Default = 80
+-- Default = 80
 
 Config.MenuTitle = 0
---Default       = The default title of the menu is 'Extras Menu'
---Player Name   = This is the name of the player
---Custom        = This is a custom title set by you at Config.MenuTitleCustom
---Default = 0 [Default]  |  Player Name = 1  |  Custom = 2
+-- Default       = The default title of the menu is 'Extras Menu'
+-- Player Name   = This is the name of the player
+-- Custom        = This is a custom title set by you at Config.MenuTitleCustom
+-- Default = 0 [Default]  |  Player Name = 1  |  Custom = 2
 
 Config.MenuTitleCustom = 'Extras Menu'
---If chosen at Config.MenuTitle
+-- If chosen at Config.MenuTitle
 
 Config.EnableCredits = 'true'
 -- On = true  |  Off = false
 --We would love if you could leave them on, but we know sometimes it looks better to turn them off. :)
+
+Config.DamageStopper = true
+-- Enabling this means that vehicles will not be abled to change their extras when over the damage limit.
+-- Note: Recommended to have this disabled when using "locationOpen", as you should have the locations at repair shops anyway.
+
+Config.DamageLimit = 980
+-- The max damage value a vehicle can have. Anything over this will result in the vehicle not being allow to change extras. [Default = 980]
 
 Config.CustomNames = {
     {vehicle = '19Charger', extra = {
@@ -44,7 +55,7 @@ Config.CustomNames = {
 --If you want extra names to display as something custom for certain vehicles
 --[[
 Formt: 
-    {vehicle = 'spancode', extra = {
+    {vehicle = 'spawncode', extra = {
         ['extra_number'] = 'custom name', ['extra_number'] = 'custom name', ['extra_number'] = 'custom name'
     }},
 EX:
