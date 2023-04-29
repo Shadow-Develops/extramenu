@@ -14,7 +14,7 @@ Config = {}
 Config.MenuKey = 244
 -- Default = 244 [M]  |  To change the button check out https://docs.fivem.net/game-references/controls/
 
-Config.requirePerms = true
+Config.requirePerms = false
 -- When enabled (true), a user must have the ace permissions to open the menu.
 -- If using, add this to server.cfg: "add_ace identifier.steam:steamidhere use.ExtraMenu" allow or "add_ace group.groupName use.ExtraMenu allow"
 

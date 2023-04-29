@@ -14,7 +14,6 @@
 ]] 
 _menuPool = NativeUI.CreatePool()
 local menuOpen = false
-local allowedToUse = false
 
 local MenuOri = 0
 if Config.MenuOrientation == 0 then
@@ -67,7 +66,6 @@ function IsVehicleHealthy(vehicle)
         return false
     end
 end
-
 
 function ShowNotification(text)
     SetNotificationTextEntry("STRING")
@@ -181,7 +179,6 @@ end
 
 Citizen.CreateThread(function()
     while true do
-        TriggerServerEvent("extramenu.getIsAllowed")
         if Config.locationOpen == false then
             Citizen.Wait(0)
             _menuPool:ProcessMenus()
@@ -189,7 +186,7 @@ Citizen.CreateThread(function()
             local vehicle = GetVehiclePedIsIn(ped, false)
             
             if IsControlJustPressed(1, Config.MenuKey) and not menuOpen then
-                if not allowedToUse and Config.requirePerms then
+                if TriggerServerEvent("extramenu.getIsAllowed") ~= 1 and Config.requirePerms then
                     return ShowNotification('~r~You do not have the correct permissions to open this menu.')
                 end
 
@@ -238,7 +235,7 @@ Citizen.CreateThread(function()
                     local ped = GetPlayerPed(-1)
                     local vehicle = GetVehiclePedIsIn(ped, false)
                     if IsControlJustPressed(1, Config.MenuKey) then
-                        if not allowedToUse and Config.requirePerms then
+                        if TriggerServerEvent("extramenu.getIsAllowed") ~= 1 and Config.requirePerms then
                             return ShowNotification('~r~You do not have the correct permissions to open this menu.')
                         end
 
