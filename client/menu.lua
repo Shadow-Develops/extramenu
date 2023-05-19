@@ -36,16 +36,6 @@ else
     MenuTitle = 'Extras Menu'
 end
 
-local function has_value (tab, val)
-    for index, value in ipairs(tab) do
-        if value == val then
-            return true
-        end
-    end
-
-    return false
-end
-
 function AreVehicleDoorsClosed(vehicle)
     local result = true
     local numberOfDoors = GetNumberOfVehicleDoors(vehicle)
@@ -185,7 +175,7 @@ Citizen.CreateThread(function()
             local ped = GetPlayerPed(-1)
             local vehicle = GetVehiclePedIsIn(ped, false)
             
-            if IsControlJustPressed(1, Config.MenuKey) and not menuOpen then
+            if IsControlJustPressed(1, Config.MenuKey) and not menuOpen and not Config.commandOnly then
                 if TriggerServerEvent("extramenu.getIsAllowed") ~= 1 and Config.requirePerms then
                     return ShowNotification('~r~You do not have the correct permissions to open this menu.')
                 end
@@ -195,14 +185,8 @@ Citizen.CreateThread(function()
                     openMenu(ped, vehicle)
                     mainMenu:Visible(not mainMenu:Visible())
                 end
-            elseif IsControlJustPressed(1, Config.MenuKey) and menuOpen then
+            elseif IsControlJustPressed(1, Config.MenuKey) and menuOpen and not Config.commandOnly then
                 menuOpen = false
-                if mainMenu ~= nil and mainMenu:Visible() then
-                    mainMenu:Visible(false)
-                end
-            end
-
-            if IsPedInAnyVehicle(ped, false) == false then
                 if mainMenu ~= nil and mainMenu:Visible() then
                     mainMenu:Visible(false)
                 end
@@ -244,17 +228,43 @@ Citizen.CreateThread(function()
                             mainMenu:Visible(not mainMenu:Visible())
                         end
                     end
-
-                    if IsPedInAnyVehicle(ped, false) == false then
-                        if mainMenu ~= nil and mainMenu:Visible() then
-                            mainMenu:Visible(false)
-                        end
-                    end
                 end
+            end
+        end
+
+        if IsPedInAnyVehicle(GetPlayerPed(-1), false) == false then
+            if mainMenu ~= nil and mainMenu:Visible() then
+                mainMenu:Visible(false)
+                menuOpen = false
             end
         end
     end
 end)
+
+if Config.commandOpen then
+    RegisterCommand(Config.command, function(source, args)
+        _menuPool:ProcessMenus()
+        local ped = GetPlayerPed(-1)
+        local vehicle = GetVehiclePedIsIn(ped, false)
+        
+        if not menuOpen then
+            if TriggerServerEvent("extramenu.getIsAllowed") ~= 1 and Config.requirePerms then
+                return ShowNotification('~r~You do not have the correct permissions to open this menu.')
+            end
+            
+            menuOpen = true
+            if IsPedInAnyVehicle(ped, false) and GetPedInVehicleSeat(vehicle, -1) == ped then
+                openMenu(ped, vehicle)
+                mainMenu:Visible(not mainMenu:Visible())
+            end
+        elseif menuOpen then
+            menuOpen = false
+            if mainMenu ~= nil and mainMenu:Visible() then
+                mainMenu:Visible(false)
+            end
+        end
+    end, false)
+end
 
 RegisterNetEvent("extramenu.returnIsAllowed")
 AddEventHandler("extramenu.returnIsAllowed", function(isAllowed)

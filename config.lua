@@ -21,6 +21,13 @@ Config.requirePerms = false
 Config.locationOpen = false
 -- Default = false | When this is true you will need to input information in Config.locationMarker, as the menu will only work when a player walks over a marker on the map.
 
+Config.commandOpen = false
+-- Default = false | When this is true you will be able to open the menu via the command defined on the next line. | Doesn't work with "locationOpen".
+Config.command = 'extramenu'
+-- Default = 'extramenu' | This defines the command used to open the extra menu when "Config.commandOpen = true".
+Config.commandOnly = false
+-- Default = false | When enabled the menu can only be opened with the command.
+
 Config.MenuOrientation = 1
 -- Left = 0  |  Right = 1 [Default]
 
