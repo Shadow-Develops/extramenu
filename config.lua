@@ -58,6 +58,9 @@ Config.CustomNames = {
     {vehicle = '19Charger', extra = {
         ['1'] = 'Ram Bar', ['2'] = 'Light Bar', ['3'] = 'Visor Lights', ['4'] = 'Dashboard Lights', ['5'] = 'Spot Lights'
     }},
+    {vehicle = 'f150gw', extra = {
+        ['1'] = 'Light Bar', ['2'] = 'Visor Lights', ['3'] = 'Dashboard Lights', ['4'] = 'Ram Bar', ['5'] = 'Wrapper Bar', ['6'] = 'Spotlights', ['7'] = 'Spotlights (Left Up)', ['8'] = 'Cruise Lights', ['9'] = 'Grill Lights', ['10'] = 'Antennas'
+    }},
 }
 --If you want extra names to display as something custom for certain vehicles
 --[[

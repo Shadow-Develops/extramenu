@@ -79,8 +79,14 @@ function ExtraChanger(ped, vehicle, menu)
         for k,_ in pairs(veh_extras) do
             if GetEntityModel(vehicle) == GetHashKey(CustomExtra.vehicle) then
                 x = "" .. k .. ""
-                local extraItem = NativeUI.CreateCheckboxItem(CustomExtra.extra[x], veh_extras[k],
-                    "Toggle for " .. CustomExtra.extra[x] .. " | Extra #" .. k)
+                local extraItem
+                if CustomExtra.extra[x] == nil then
+                    extraItem = NativeUI.CreateCheckboxItem('Extra ' .. k, veh_extras[k],
+                            "Toggle for Extra " .. k)
+                else
+                    extraItem = NativeUI.CreateCheckboxItem(CustomExtra.extra[x], veh_extras[k],
+                        "Toggle for " .. CustomExtra.extra[x] .. " | Extra #" .. k)
+                end
                 mainMenu:AddItem(extraItem)
                 items[k] = extraItem
                 customCar = true
@@ -142,8 +148,8 @@ function CreditsSection(ped, vehicle, menu)
     submenu:AddItem(NativeUI.CreateItem("Menu Information",
         "The ~y~Extra Menu ~w~was created to make changing extras easier, and to allow for custom names to be added for extras for custom vehicles in servers."))
     submenu:AddItem(NativeUI.CreateItem("Creators Information",
-        "This menu was created by ~r~Agent Squad Productions~w~."))
-    submenu:AddItem(NativeUI.CreateItem("Links", "~o~agentsquad.org ~w~| ~b~discord.agentsquad.org"))
+        "This menu was created by ~c~Shadow Development~w~."))
+    submenu:AddItem(NativeUI.CreateItem("Links", "~o~shadowdevs.com ~w~| ~b~https://discord.gg/fVrRa8z"))
     submenu:SetMenuWidthOffset(Config.MenuWidth)
 end
 
