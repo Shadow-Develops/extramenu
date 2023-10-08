@@ -57,6 +57,16 @@ function IsVehicleHealthy(vehicle)
     end
 end
 
+function find_index(tbl, target)
+    for i, v in ipairs(tbl) do
+        if v == target then
+            return i
+        end
+    end
+    return nil
+end
+
+
 function ShowNotification(text)
     SetNotificationTextEntry("STRING")
     AddTextComponentString(text)
@@ -142,14 +152,51 @@ function ExtraChanger(ped, vehicle, menu)
     end
 end
 
+function LiveryChanger(ped, vehicle, menu)
+    local veh_liveries = {}
+    local custveh_liveries = {}
+    local customveh = false
+
+    for _,CustomLivery in pairs(Config.CustomLiveryNames) do
+        for i = 0, GetVehicleLiveryCount(vehicle)-1 do
+            if GetEntityModel(vehicle) == GetHashKey(CustomLivery.vehicle) then
+                if CustomLivery.livery[i] == nil then
+                    table.insert(veh_liveries, "Livery #" .. i)
+                    custveh_liveries[i] = "Livery #" .. i
+                else
+                    table.insert(veh_liveries, CustomLivery.livery[i])
+                    custveh_liveries[i] = CustomLivery.livery[i]
+                end
+                customveh = true
+            else
+                table.insert(veh_liveries, "Livery #" .. i)
+            end
+        end
+    end
+
+    local liveryList
+    if customveh then
+        liveryList = NativeUI.CreateListItem('Livery Charger', veh_liveries, find_index(veh_liveries, custveh_liveries[GetVehicleLivery(vehicle)]), "Change the Vehicle's Livery")
+    else
+        liveryList = NativeUI.CreateListItem('Livery Charger', veh_liveries, find_index(veh_liveries, "Livery #"..GetVehicleLivery(vehicle)), "Change the Vehicle's Livery")
+    end
+    menu:AddItem(liveryList)
+
+    menu.OnListChange = function(sender, item, index)
+        if item == liveryList then
+            SetVehicleLivery(vehicle, index-1)
+        end
+    end
+end
+
 function CreditsSection(ped, vehicle, menu)
     local submenu = _menuPool:AddSubMenu(menu, "Menu Info / Credits",
         "Information about the ~y~Extra Menu ~w~and the creators.", true, true)
     submenu:AddItem(NativeUI.CreateItem("Menu Information",
-        "The ~y~Extra Menu ~w~was created to make changing extras easier, and to allow for custom names to be added for extras for custom vehicles in servers."))
+        "The ~y~Extra Menu ~w~was created to make changing extras easier, and to allow custom names for extras."))
     submenu:AddItem(NativeUI.CreateItem("Creators Information",
         "This menu was created by ~c~Shadow Development~w~."))
-    submenu:AddItem(NativeUI.CreateItem("Links", "~o~shadowdevs.com ~w~| ~b~https://discord.gg/fVrRa8z"))
+    submenu:AddItem(NativeUI.CreateItem("Links", "~o~shadowdevs.com ~w~| ~b~https://discord.gg/shadowdevs"))
     submenu:SetMenuWidthOffset(Config.MenuWidth)
 end
 
@@ -161,6 +208,9 @@ function openMenu(ped, vehicle)
     mainMenu = NativeUI.CreateMenu(MenuTitle, "~b~The easy way to change extras!", MenuOri)
     _menuPool:Add(mainMenu)
     ExtraChanger(ped, vehicle, mainMenu)
+    if Config.enableLivery then
+        LiveryChanger(ped, vehicle, mainMenu)
+    end
     if Config.EnableCredits then
         CreditsSection(ped, vehicle, mainMenu)
     end
